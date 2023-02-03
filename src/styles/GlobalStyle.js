@@ -16,6 +16,7 @@ const GlobalStyle = createGlobalStyle`
     font-family: 'Noto Sans KR', sans-serif;
     font-weight: 400;
     line-height: 1.5;
+    background-color: beige;
   }
 
   input, button {
@@ -33,6 +34,7 @@ const GlobalStyle = createGlobalStyle`
 
   a {
     text-decoration: none;
+    color: #000;
   }
 `;
 
