@@ -1,7 +1,10 @@
-import React, { useState } from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Button, Container, Div, Form, Input, Label, Title } from "./styles";
 
 const Register = () => {
+  const [disabled, setDisabled] = useState(false);
   const [userData, setUserData] = useState({
     email: "",
     password: "",
@@ -9,7 +12,7 @@ const Register = () => {
   });
 
   const { email, password, password2 } = userData;
-  console.log(email, password, password2);
+  const navigate = useNavigate();
 
   const onChange = (e) => {
     setUserData((prevState) => ({
@@ -18,9 +21,42 @@ const Register = () => {
     }));
   };
 
+  const handleSignup = async (e) => {
+    e.preventDefault();
+
+    try {
+      const checkPassword = password.length >= 8 && password === password2;
+      const validation = email.includes("@") && checkPassword;
+
+      if (validation) {
+        const response = await axios.post(
+          "https://pre-onboarding-selection-task.shop/auth/signup",
+          { email, password },
+          { headers: { "Content-Type": "application/json" } }
+        );
+
+        if (response.status === 201) {
+          navigate("/signin");
+          setUserData({
+            email: "",
+            password: "",
+            password2: "",
+          });
+        }
+      }
+      setDisabled(true);
+    } catch (error) {
+      throw new Error(error.response.data.message);
+    }
+  };
+
+  useEffect(() => {
+    if (email && password && password2) setDisabled(false);
+  }, [email, password, password2]);
+
   return (
     <Container>
-      <Form>
+      <Form onSubmit={handleSignup}>
         <Title>TodoList 가입</Title>
         <Div>
           <Label>이메일</Label>
@@ -48,14 +84,14 @@ const Register = () => {
           <Label>패스워드 확인</Label>
           <Input
             type="password"
-            data-testid="password-input"
+            data-testid="password2-input"
             name="password2"
             value={password2}
             onChange={onChange}
-            placeholder="패스워드 입력..."
+            placeholder="패스워드 확인..."
           />
         </Div>
-        <Button type="submit" data-testid="signup-button">
+        <Button type="submit" data-testid="signup-button" disabled={disabled}>
           회원가입
         </Button>
       </Form>

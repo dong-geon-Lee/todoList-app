@@ -1,13 +1,20 @@
-import React, { useState } from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import { Button, Container, Div, Form, Input, Label, Title } from "./styles";
 
 const Login = () => {
+  const [disabled, setDisabled] = useState(false);
   const [userData, setUserData] = useState({
     email: "",
     password: "",
   });
 
   const { email, password } = userData;
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  console.log(location);
   console.log(email, password);
 
   const onChange = (e) => {
@@ -17,9 +24,45 @@ const Login = () => {
     }));
   };
 
+  const handleSignIn = async (e) => {
+    e.preventDefault();
+
+    try {
+      const validation = email.includes("@") && password.length >= 8;
+
+      if (validation) {
+        const response = await axios.post(
+          "https://pre-onboarding-selection-task.shop/auth/signin",
+          {
+            email,
+            password,
+          },
+          { headers: { "Content-Type": "application/json" } }
+        );
+
+        if (response.status === 200) {
+          localStorage.setItem("token", JSON.stringify(response.data));
+          setUserData({
+            email: "",
+            password: "",
+          });
+
+          navigate("/todo", { state: { token: response.data } });
+        }
+      }
+      setDisabled(true);
+    } catch (error) {
+      throw new Error(error.response.data.message);
+    }
+  };
+
+  useEffect(() => {
+    if (email && password) setDisabled(false);
+  }, [email, password]);
+
   return (
     <Container>
-      <Form>
+      <Form onSubmit={handleSignIn}>
         <Title>TodoList 로그인</Title>
         <Div>
           <Label>이메일</Label>
@@ -44,7 +87,7 @@ const Login = () => {
           />
         </Div>
 
-        <Button type="submit" data-testid="signup-button">
+        <Button type="submit" data-testid="signin-button" disabled={disabled}>
           로그인
         </Button>
       </Form>

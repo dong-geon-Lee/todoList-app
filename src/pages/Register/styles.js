@@ -52,13 +52,14 @@ export const Button = styled.button`
   display: block;
   padding: 1.6rem;
   font-size: 2rem;
-  background-color: #db4c3f;
+  background-color: ${(props) => (props.disabled ? "gray" : "#db4c3f")};
   color: #fff;
   margin: 3.6rem 0;
   border-radius: 0.4rem;
   transition: all 0.3s ease;
+  cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
 
   &:hover {
-    background-color: #c53727;
+    background-color: ${(props) => (props.disabled ? "gray" : "#c53727")};
   }
 `;
