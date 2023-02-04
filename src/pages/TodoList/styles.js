@@ -12,11 +12,14 @@ export const Wrapper = styled.div`
   padding: 4rem 6rem;
   background-color: #fff;
   border: 1px solid transparent;
-  border-radius: 2rem;
+  border-top-left-radius: 1rem;
+  border-bottom-left-radius: 1rem;
+  border-top-right-radius: 0.4rem;
+  border-bottom-right-radius: 0.4rem;
   box-shadow: 0 1rem 1rem 1rem rgba(0, 0, 0, 0.3);
   width: 60rem;
   height: 50rem;
-  overflow: hidden;
+  overflow-y: scroll;
 `;
 
 export const Title = styled.h1`
@@ -37,7 +40,6 @@ export const Div = styled.div`
 
 export const Ul = styled.ul`
   margin: 4rem 0;
-  /* overflow-y: scroll; */
 `;
 
 export const Li = styled.li`
@@ -69,9 +71,19 @@ export const Input = styled.input`
   }
 `;
 
+export const BtnBox = styled.div`
+  margin-left: auto;
+  display: flex;
+  gap: 1.2rem;
+  border-radius: 1rem;
+  overflow: hidden;
+`;
+
 export const Button = styled.button`
   font-size: 1.8rem;
-  background-color: inherit;
+  background-color: #f1f3f5;
+  padding: 1rem;
+  cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
 
   &.add__todo {
     font-size: 2rem;
@@ -81,4 +93,6 @@ export const Button = styled.button`
 export const Span = styled.span`
   font-size: 1.8rem;
   display: inline-block;
+  text-decoration: ${(props) => (props.isCompleted ? "line-through" : "none")};
+  user-select: none;
 `;

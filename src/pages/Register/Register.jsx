@@ -13,7 +13,7 @@ const Register = () => {
 
   const { email, password, password2 } = userData;
   const navigate = useNavigate();
-  const hasToken = JSON.parse(localStorage.getItem("token"));
+  const token = JSON.parse(localStorage.getItem("token"));
 
   const onChange = (e) => {
     setUserData((prevState) => ({
@@ -53,8 +53,8 @@ const Register = () => {
 
   useEffect(() => {
     if (email && password && password2) setDisabled(false);
-    if (hasToken) navigate("/todo");
-  }, [email, password, password2, hasToken]);
+    if (token) navigate("/todo");
+  }, [email, password, password2]);
 
   return (
     <Container>
