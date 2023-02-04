@@ -1,5 +1,5 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
+import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import {
   BtnBox,
@@ -35,7 +35,7 @@ const TodoList = () => {
     setTodo(e.target.value);
   };
 
-  const checkOnchange = (e, id) => {
+  const onchangeCheckBox = (e, id) => {
     setTodoLists((prevState) => {
       return prevState.map((todoList) => {
         if (todoList.id === id) {
@@ -46,11 +46,7 @@ const TodoList = () => {
     });
   };
 
-  console.log(todoLists);
-
-  const handleTodoList = async () => {
-    console.log("클릭");
-
+  const createTodo = async () => {
     const response = await axios.post(
       "https://pre-onboarding-selection-task.shop/todos",
       { todo },
@@ -61,8 +57,6 @@ const TodoList = () => {
         },
       }
     );
-
-    console.log(response.data);
 
     setTodoLists((prevState) => [...prevState, response.data]);
     setTodo("");
@@ -82,10 +76,26 @@ const TodoList = () => {
     setTodoLists(response.data);
   };
 
+  const deleteTodo = async (id) => {
+    await axios.delete(
+      `https://pre-onboarding-selection-task.shop/todos/${id}`,
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token.access_token}`,
+        },
+      }
+    );
+
+    getTodos();
+  };
+
   useEffect(() => {
     if (!token) navigate("/signin");
     getTodos();
   }, []);
+
+  console.log(todoLists);
 
   return (
     <Container>
@@ -106,7 +116,7 @@ const TodoList = () => {
             type="button"
             data-testid="new-todo-add-button"
             className="add__todo"
-            onClick={handleTodoList}
+            onClick={createTodo}
           >
             추가
           </Button>
@@ -122,7 +132,7 @@ const TodoList = () => {
                 <Input
                   type="checkbox"
                   className="checkbox"
-                  onChange={(event) => checkOnchange(event, todoList.id)}
+                  onChange={(event) => onchangeCheckBox(event, todoList.id)}
                   checked={todoList.isCompleted}
                 />
                 <Span isCompleted={todoList.isCompleted}>{todoList?.todo}</Span>
@@ -134,7 +144,13 @@ const TodoList = () => {
                 >
                   수정
                 </Button>
-                <Button data-testid="delete-button">삭제</Button>
+                <Button
+                  type="button"
+                  data-testid="delete-button"
+                  onClick={() => deleteTodo(todoList.id)}
+                >
+                  삭제
+                </Button>
               </BtnBox>
             </Li>
           ))}
