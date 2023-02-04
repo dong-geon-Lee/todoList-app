@@ -65,7 +65,7 @@ const Login = () => {
   return (
     <Container>
       <Form onSubmit={handleSignIn}>
-        <Title>TodoList 로그인</Title>
+        <Title>로그인</Title>
         <Div>
           <Label>이메일</Label>
           <Input

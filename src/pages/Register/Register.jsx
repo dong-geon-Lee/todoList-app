@@ -59,7 +59,7 @@ const Register = () => {
   return (
     <Container>
       <Form onSubmit={handleSignup}>
-        <Title>TodoList 회원가입</Title>
+        <Title>회원가입</Title>
         <Div>
           <Label>이메일</Label>
           <Input
