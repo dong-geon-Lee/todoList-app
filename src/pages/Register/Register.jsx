@@ -13,6 +13,7 @@ const Register = () => {
 
   const { email, password, password2 } = userData;
   const navigate = useNavigate();
+  const hasToken = JSON.parse(localStorage.getItem("token"));
 
   const onChange = (e) => {
     setUserData((prevState) => ({
@@ -52,12 +53,13 @@ const Register = () => {
 
   useEffect(() => {
     if (email && password && password2) setDisabled(false);
-  }, [email, password, password2]);
+    if (hasToken) navigate("/todo");
+  }, [email, password, password2, hasToken]);
 
   return (
     <Container>
       <Form onSubmit={handleSignup}>
-        <Title>TodoList 가입</Title>
+        <Title>TodoList 회원가입</Title>
         <Div>
           <Label>이메일</Label>
           <Input

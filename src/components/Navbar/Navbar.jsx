@@ -1,21 +1,32 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import { Container, Wrapper } from "./styles";
+import { Link, useNavigate } from "react-router-dom";
+import { Box, Button, Container, Title } from "./styles";
 
 const Navbar = () => {
+  const hasToken = JSON.parse(localStorage.getItem("token"));
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    navigate("/signin");
+  };
+
   return (
     <Container>
-      <Wrapper>
-        <Link to="/">
-          <h1>홈페이지</h1>
-        </Link>
-        <Link to="/signup">
-          <h1>회원가입</h1>
-        </Link>
-        <Link to="/signin">
-          <h1>로그인</h1>
-        </Link>
-      </Wrapper>
+      {hasToken ? (
+        <Box>
+          <Button onClick={handleLogout}>로그아웃</Button>
+        </Box>
+      ) : (
+        <Box>
+          <Link to="/signup">
+            <Title>회원가입</Title>
+          </Link>
+          <Link to="/signin">
+            <Title>로그인</Title>
+          </Link>
+        </Box>
+      )}
     </Container>
   );
 };

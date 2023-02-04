@@ -13,6 +13,7 @@ const Login = () => {
   const { email, password } = userData;
   const navigate = useNavigate();
   const location = useLocation();
+  const hasToken = JSON.parse(localStorage.getItem("token"));
 
   console.log(location);
   console.log(email, password);
@@ -58,7 +59,8 @@ const Login = () => {
 
   useEffect(() => {
     if (email && password) setDisabled(false);
-  }, [email, password]);
+    if (hasToken) navigate("/todo");
+  }, [email, password, hasToken]);
 
   return (
     <Container>
