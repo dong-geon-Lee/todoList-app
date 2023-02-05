@@ -1,71 +1,88 @@
-# Getting Started with Create React App
+<img width="100" height="100" alt="bank" src="https://user-images.githubusercontent.com/69576865/216808370-58cdc1f2-b173-4ba6-80cb-af48cb47b899.png">
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## :mag_right: &nbsp; Intro
+> todoList 앱입니다.  
+기본적인 CRUD 기능을 제공합니다.
+<br/>
 
-## Available Scripts
+## :link: &nbsp; Link
+https://dong-geon-lee.github.io/wanted-pre-onboarding-frontend/
+<br/>
+<br/>
+  
+## :alarm_clock: &nbsp; Period
+ - 2022.02.03 - 2023.02.05
+<br/>
 
-In the project directory, you can run:
+## :seedling: &nbsp; Stack  
+![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=HTML5&logoColor=fff)
+![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=CSS3&logoColor=fff)
+![JAVASCRIPT](https://img.shields.io/badge/JavaScript-343a40?style=for-the-badge&logo=JavaScript&logoColor=F7DF1E)  
+![React](https://img.shields.io/badge/React-444444?style=for-the-badge&logo=React)
+![styled-components](https://img.shields.io/badge/styled--Components-DB7093?style=for-the-badge&logo=styled-components&logoColor=fff)
+<br/>
+<br/>
 
-### `npm start`
+## :eyes: &nbsp; Web View
+<details>
+<summary>유효성 검사</summary>  
+<div markdown="1">
+</div>
+<img width="600" alt=""
+ src="https://user-images.githubusercontent.com/69576865/216809680-2c2e4465-c79f-4180-9ece-2f0016aecf3a.gif">
+</details>
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+<details>
+<summary>회원가입</summary>  
+<div markdown="1">
+</div>
+<img width="600" alt=""
+ src="https://user-images.githubusercontent.com/69576865/216809870-cb251a3f-d354-4128-8943-8315c67189e1.gif">
+</details>
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+<details>
+<summary>로그인</summary>  
+<div markdown="1">
+</div>
+<img width="600" alt=""
+ src="https://user-images.githubusercontent.com/69576865/216810032-0b6adaf3-efa1-4401-8f4e-96722c8148ba.gif">
+</details>
 
-### `npm test`
+<details>
+<summary>리다이렉트</summary>  
+<div markdown="1">
+</div>
+<img width="600" alt=""
+ src="https://user-images.githubusercontent.com/69576865/216810657-c71de94e-5726-42a9-8bb7-6cfe46b159c0.gif">
+</details>
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+<details>
+<summary>todo 목록 추가</summary>  
+<div markdown="1">
+</div>
+<img width="600" alt=""
+ src="https://user-images.githubusercontent.com/69576865/216811088-168527ea-1135-473e-9c92-36cb5c100357.gif">
+</details>
 
-### `npm run build`
+<details>
+<summary>todo 목록 제거</summary>  
+<div markdown="1">
+</div>
+<img width="600" alt=""
+ src="https://user-images.githubusercontent.com/69576865/216811326-e5a97e98-07ab-422d-b401-6da945ec0430.gif">
+</details>
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+<details>
+<summary>todo 목록 수정</summary>  
+<div markdown="1">
+</div>
+<img width="600" alt=""
+ src="https://user-images.githubusercontent.com/69576865/216811522-614e6649-266c-4df1-ac21-ba8062648677.gif">
+</details>
+</br>
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-# wanted-pre-onboarding-frontend
+## :bust_in_silhouette: &nbsp; Crew
+Crew | Role | GitHub
+----- | ----- | -----
+💻 이동건 | Front-end | https://github.com/dong-geon-Lee
+<br/>
