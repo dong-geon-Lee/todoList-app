@@ -83,7 +83,7 @@ export const Button = styled.button`
   font-size: 1.8rem;
   background-color: #f1f3f5;
   padding: 1rem;
-  cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
+  /* cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")}; */
 
   &.add__todo {
     font-size: 2rem;
@@ -93,6 +93,7 @@ export const Button = styled.button`
 export const Span = styled.span`
   font-size: 1.8rem;
   display: inline-block;
-  text-decoration: ${(props) => (props.isCompleted ? "line-through" : "none")};
+  /* text-decoration: ${(props) =>
+    props.isCompleted ? "line-through" : "none"}; */
   user-select: none;
 `;

@@ -19,7 +19,7 @@ import {
 const TodoList = () => {
   const [todo, setTodo] = useState("");
   const [todoLists, setTodoLists] = useState([]);
-  const [modifyActive, setModifyActive] = useState(false);
+  const [editTodo, setEditTodo] = useState("");
 
   const navigate = useNavigate();
   const token = JSON.parse(localStorage.getItem("token"));
@@ -35,11 +35,23 @@ const TodoList = () => {
     setTodo(e.target.value);
   };
 
-  const onchangeCheckBox = (e, id) => {
+  const handleEditOnChange = (e) => {
+    setEditTodo(e.target.value);
+  };
+
+  const handleUpdateTodo = (id) => {
+    const todoItems = todoLists.find((todoList) => todoList.id === id);
+    setEditTodo(todoItems.todo);
+  };
+
+  const handleTodoUpdate = (id) => {
     setTodoLists((prevState) => {
       return prevState.map((todoList) => {
         if (todoList.id === id) {
-          return { ...todoList, isCompleted: e.target.checked };
+          return {
+            ...todoList,
+            isCompleted: !todoList.isCompleted,
+          };
         }
         return todoList;
       });
@@ -90,12 +102,29 @@ const TodoList = () => {
     getTodos();
   };
 
+  const updateTodo = async (id, editTodo, isCompleted) => {
+    console.log(id, editTodo);
+    await axios.put(
+      `https://pre-onboarding-selection-task.shop/todos/${id}`,
+      {
+        todo: editTodo,
+        isCompleted: !isCompleted,
+      },
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token.access_token}`,
+        },
+      }
+    );
+
+    getTodos();
+  };
+
   useEffect(() => {
     if (!token) navigate("/signin");
     getTodos();
   }, []);
-
-  console.log(todoLists);
 
   return (
     <Container>
@@ -109,6 +138,7 @@ const TodoList = () => {
           <Input
             type="text"
             data-testid="new-todo-input"
+            name="todo"
             onChange={onChange}
             value={todo}
           />
@@ -122,35 +152,69 @@ const TodoList = () => {
           </Button>
         </Div>
 
-        {/* <Input type="text" data-testid="modify-input" />
-        <Button data-testid="submit-button">제출</Button>
-        <Button data-testid="cancel-button">취소</Button> */}
         <Ul>
           {todoLists.map((todoList) => (
             <Li key={todoList?.id}>
               <Label>
-                <Input
-                  type="checkbox"
-                  className="checkbox"
-                  onChange={(event) => onchangeCheckBox(event, todoList.id)}
-                  checked={todoList.isCompleted}
-                />
-                <Span isCompleted={todoList.isCompleted}>{todoList?.todo}</Span>
+                <Input type="checkbox" className="checkbox" />
+                {todoList.isCompleted ? (
+                  <>
+                    <Input
+                      type="text"
+                      data-testid="modify-input"
+                      onChange={handleEditOnChange}
+                      value={editTodo}
+                    />
+                  </>
+                ) : (
+                  <>
+                    <Span isCompleted={todoList.isCompleted}>
+                      {todoList?.todo}
+                    </Span>
+                  </>
+                )}
               </Label>
               <BtnBox>
-                <Button
-                  data-testid="modify-button"
-                  disabled={todoList.isCompleted}
-                >
-                  수정
-                </Button>
-                <Button
-                  type="button"
-                  data-testid="delete-button"
-                  onClick={() => deleteTodo(todoList.id)}
-                >
-                  삭제
-                </Button>
+                {todoList.isCompleted ? (
+                  <>
+                    <Button
+                      data-testid="submit-button"
+                      onClick={() =>
+                        updateTodo(todoList.id, editTodo, todoList.isCompleted)
+                      }
+                    >
+                      제출
+                    </Button>
+                    <Button
+                      data-testid="cancel-button"
+                      onClick={() => {
+                        handleTodoUpdate(todoList.id);
+                      }}
+                    >
+                      취소
+                    </Button>
+                  </>
+                ) : (
+                  <>
+                    <Button
+                      type="button"
+                      data-testid="modify-button"
+                      onClick={() => {
+                        handleTodoUpdate(todoList.id);
+                        handleUpdateTodo(todoList.id);
+                      }}
+                    >
+                      수정
+                    </Button>
+                    <Button
+                      type="button"
+                      data-testid="delete-button"
+                      onClick={() => deleteTodo(todoList.id)}
+                    >
+                      삭제
+                    </Button>
+                  </>
+                )}
               </BtnBox>
             </Li>
           ))}
