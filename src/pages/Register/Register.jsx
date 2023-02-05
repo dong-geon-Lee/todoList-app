@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { signupAPI } from "../../api/auth";
+import { HTTP__CREATED } from "../../constants/constants";
+import { checkSignUpUser } from "../../helpers/helpers";
 import { Button, Container, Div, Form, Input, Label, Title } from "./styles";
 
 const Register = () => {
@@ -26,19 +28,12 @@ const Register = () => {
     e.preventDefault();
 
     try {
-      const checkPassword = password.length >= 8 && password === password2;
-      const validation = email.includes("@") && checkPassword;
-
+      const validation = checkSignUpUser(email, password, password2);
       if (validation) {
         const response = await signupAPI(email, password);
-
-        if (response.status === 201) {
+        if (response.status === HTTP__CREATED) {
           navigate("/signin");
-          setUserData({
-            email: "",
-            password: "",
-            password2: "",
-          });
+          setUserData({ email: "", password: "", password2: "" });
         }
       }
       setDisabled(true);

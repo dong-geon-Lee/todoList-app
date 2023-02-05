@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { signInAPI } from "../../api/auth";
+import { HTTP__OK } from "../../constants/constants";
+import { checkSignInUser } from "../../helpers/helpers";
 import { Button, Container, Div, Form, Input, Label, Title } from "./styles";
 
 const Login = () => {
@@ -25,12 +27,10 @@ const Login = () => {
     e.preventDefault();
 
     try {
-      const validation = email.includes("@") && password.length >= 8;
-
+      const validation = checkSignInUser(email, password);
       if (validation) {
         const response = await signInAPI(email, password);
-
-        if (response.status === 200) {
+        if (response.status === HTTP__OK) {
           localStorage.setItem("token", JSON.stringify(response.data));
           setUserData({ email: "", password: "" });
           navigate("/todo", { state: { token: response.data } });

@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { Box, Button, Container, Title } from "./styles";
 
 const Navbar = () => {
-  const hasToken = JSON.parse(localStorage.getItem("token"));
+  const token = JSON.parse(localStorage.getItem("token"));
   const navigate = useNavigate();
 
   const handleLogout = () => {
@@ -13,7 +13,7 @@ const Navbar = () => {
 
   return (
     <Container>
-      {hasToken ? (
+      {token ? (
         <Box>
           <Button onClick={handleLogout}>로그아웃</Button>
         </Box>

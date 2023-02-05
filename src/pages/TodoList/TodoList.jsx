@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { formattedDates } from "../../helpers/helpers";
+import { findTodoList, formattedDates } from "../../helpers/helpers";
 import {
   BtnBox,
   Button,
@@ -39,7 +39,7 @@ const TodoList = () => {
   };
 
   const handleUpdateTodo = (id) => {
-    const todoItems = todoLists.find((todoList) => todoList.id === id);
+    const todoItems = findTodoList(todoLists, id);
     setEditTodo(todoItems.todo);
   };
 
