@@ -1,6 +1,6 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { signInAPI } from "../../api/auth";
 import { Button, Container, Div, Form, Input, Label, Title } from "./styles";
 
 const Login = () => {
@@ -11,12 +11,8 @@ const Login = () => {
   });
 
   const { email, password } = userData;
-  const navigate = useNavigate();
-  const location = useLocation();
   const token = JSON.parse(localStorage.getItem("token"));
-
-  console.log(location);
-  console.log(email, password);
+  const navigate = useNavigate();
 
   const onChange = (e) => {
     setUserData((prevState) => ({
@@ -32,22 +28,11 @@ const Login = () => {
       const validation = email.includes("@") && password.length >= 8;
 
       if (validation) {
-        const response = await axios.post(
-          "https://pre-onboarding-selection-task.shop/auth/signin",
-          {
-            email,
-            password,
-          },
-          { headers: { "Content-Type": "application/json" } }
-        );
+        const response = await signInAPI(email, password);
 
         if (response.status === 200) {
           localStorage.setItem("token", JSON.stringify(response.data));
-          setUserData({
-            email: "",
-            password: "",
-          });
-
+          setUserData({ email: "", password: "" });
           navigate("/todo", { state: { token: response.data } });
         }
       }
@@ -60,7 +45,7 @@ const Login = () => {
   useEffect(() => {
     if (email && password) setDisabled(false);
     if (token) navigate("/todo");
-  }, [email, password]);
+  }, [navigate, email, password, token]);
 
   return (
     <Container>

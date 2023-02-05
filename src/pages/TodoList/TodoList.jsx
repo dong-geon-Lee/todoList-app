@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import React, { useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { formattedDates } from "../../helpers/helpers";
 import {
   BtnBox,
   Button,
@@ -15,21 +15,20 @@ import {
   Ul,
   Wrapper,
 } from "./styles";
+import {
+  createTodoAPI,
+  deleteTodoAPI,
+  getTodosAPI,
+  updateTodoAPI,
+} from "../../api/todo";
 
 const TodoList = () => {
   const [todo, setTodo] = useState("");
   const [todoLists, setTodoLists] = useState([]);
   const [editTodo, setEditTodo] = useState("");
 
-  const navigate = useNavigate();
   const token = JSON.parse(localStorage.getItem("token"));
-
-  const options = {
-    weekday: "long",
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  };
+  const navigate = useNavigate();
 
   const onChange = (e) => {
     setTodo(e.target.value);
@@ -59,79 +58,53 @@ const TodoList = () => {
   };
 
   const createTodo = async () => {
-    const response = await axios.post(
-      "https://pre-onboarding-selection-task.shop/todos",
-      { todo },
-      {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token.access_token}`,
-        },
-      }
-    );
-
-    setTodoLists((prevState) => [...prevState, response.data]);
-    setTodo("");
+    try {
+      const data = await createTodoAPI(todo, token);
+      setTodoLists((prevState) => [...prevState, data]);
+      setTodo("");
+    } catch (error) {
+      throw new Error(error.response.data.message);
+    }
   };
 
-  const getTodos = async () => {
-    const response = await axios.get(
-      "https://pre-onboarding-selection-task.shop/todos",
-      {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token.access_token}`,
-        },
-      }
-    );
+  const getTodos = useCallback(async () => {
+    try {
+      const data = await getTodosAPI(token);
+      setTodoLists(data);
+    } catch (error) {
+      throw new Error(error.response.data.message);
+    }
+  }, [token]);
 
-    setTodoLists(response.data);
+  const updateTodo = async (id, editTodo, isCompleted) => {
+    try {
+      await updateTodoAPI(id, editTodo, isCompleted, token);
+      getTodos();
+    } catch (error) {
+      throw new Error(error.response.data.message);
+    }
   };
 
   const deleteTodo = async (id) => {
-    await axios.delete(
-      `https://pre-onboarding-selection-task.shop/todos/${id}`,
-      {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token.access_token}`,
-        },
-      }
-    );
-
-    getTodos();
-  };
-
-  const updateTodo = async (id, editTodo, isCompleted) => {
-    console.log(id, editTodo);
-    await axios.put(
-      `https://pre-onboarding-selection-task.shop/todos/${id}`,
-      {
-        todo: editTodo,
-        isCompleted: !isCompleted,
-      },
-      {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token.access_token}`,
-        },
-      }
-    );
-
-    getTodos();
+    try {
+      await deleteTodoAPI(id, token);
+      getTodos();
+    } catch (error) {
+      throw new Error(error.response.data.message);
+    }
   };
 
   useEffect(() => {
     if (!token) navigate("/signin");
-    getTodos();
-  }, []);
+    if (token) getTodos();
+  }, [navigate]);
 
   return (
     <Container>
       <Wrapper>
         <Div>
           <Title>TodoList</Title>
-          <Text>{new Date().toLocaleDateString("ko-KR", options)}</Text>
+          <Text>{formattedDates()}</Text>
         </Div>
 
         <Div>
@@ -153,26 +126,24 @@ const TodoList = () => {
         </Div>
 
         <Ul>
-          {todoLists.map((todoList) => (
+          {todoLists?.map((todoList) => (
             <Li key={todoList?.id}>
               <Label>
                 <Input type="checkbox" className="checkbox" />
-                {todoList.isCompleted ? (
-                  <>
+                <>
+                  {todoList.isCompleted ? (
                     <Input
                       type="text"
                       data-testid="modify-input"
                       onChange={handleEditOnChange}
                       value={editTodo}
                     />
-                  </>
-                ) : (
-                  <>
+                  ) : (
                     <Span isCompleted={todoList.isCompleted}>
                       {todoList?.todo}
                     </Span>
-                  </>
-                )}
+                  )}
+                </>
               </Label>
               <BtnBox>
                 {todoList.isCompleted ? (

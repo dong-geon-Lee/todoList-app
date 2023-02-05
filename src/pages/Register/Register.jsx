@@ -1,6 +1,6 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { signupAPI } from "../../api/auth";
 import { Button, Container, Div, Form, Input, Label, Title } from "./styles";
 
 const Register = () => {
@@ -12,8 +12,8 @@ const Register = () => {
   });
 
   const { email, password, password2 } = userData;
-  const navigate = useNavigate();
   const token = JSON.parse(localStorage.getItem("token"));
+  const navigate = useNavigate();
 
   const onChange = (e) => {
     setUserData((prevState) => ({
@@ -30,11 +30,7 @@ const Register = () => {
       const validation = email.includes("@") && checkPassword;
 
       if (validation) {
-        const response = await axios.post(
-          "https://pre-onboarding-selection-task.shop/auth/signup",
-          { email, password },
-          { headers: { "Content-Type": "application/json" } }
-        );
+        const response = await signupAPI(email, password);
 
         if (response.status === 201) {
           navigate("/signin");
@@ -54,7 +50,7 @@ const Register = () => {
   useEffect(() => {
     if (email && password && password2) setDisabled(false);
     if (token) navigate("/todo");
-  }, [email, password, password2]);
+  }, [navigate, email, password, password2, token]);
 
   return (
     <Container>
