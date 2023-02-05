@@ -61,7 +61,7 @@ https://dong-geon-lee.github.io/wanted-pre-onboarding-frontend/
 <div markdown="1">
 </div>
 <img width="600" alt=""
- src="https://user-images.githubusercontent.com/69576865/213341713-69bc2bc1-409f-4731-81c2-0c0889ca0dca.gif">
+ src="https://user-images.githubusercontent.com/69576865/216811088-168527ea-1135-473e-9c92-36cb5c100357.gif">
 </details>
 
 <details>
@@ -69,7 +69,7 @@ https://dong-geon-lee.github.io/wanted-pre-onboarding-frontend/
 <div markdown="1">
 </div>
 <img width="600" alt=""
- src="https://user-images.githubusercontent.com/69576865/213347422-3d1befa8-4e2c-4c0d-8406-28e9797b43df.gif">
+ src="https://user-images.githubusercontent.com/69576865/216811326-e5a97e98-07ab-422d-b401-6da945ec0430.gif">
 </details>
 
 <details>
@@ -77,7 +77,7 @@ https://dong-geon-lee.github.io/wanted-pre-onboarding-frontend/
 <div markdown="1">
 </div>
 <img width="600" alt=""
- src="https://user-images.githubusercontent.com/69576865/213344261-53b6a9e0-b523-4e01-8aae-4d0fabc4285c.gif">
+ src="https://user-images.githubusercontent.com/69576865/216811522-614e6649-266c-4df1-ac21-ba8062648677.gif">
 </details>
 </br>
 
