@@ -12,7 +12,7 @@ import TodoList from "./pages/TodoList/TodoList";
 
 const App = () => {
   return (
-    <Router>
+    <Router basename={process.env.PUBLIC_URL}>
       <Navbar />
       <Routes>
         <Route path="signin" element={<Login />} />
