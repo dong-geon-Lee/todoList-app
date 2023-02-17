@@ -67,14 +67,14 @@ const TodoList = () => {
     }
   };
 
-  const getTodos = useCallback(async () => {
+  const getTodos = async () => {
     try {
       const data = await getTodosAPI(token);
       setTodoLists(data);
     } catch (error) {
       throw new Error(error.response.data.message);
     }
-  }, [token]);
+  };
 
   const updateTodo = async (id, editTodo, isCompleted) => {
     try {
@@ -95,10 +95,11 @@ const TodoList = () => {
   };
 
   useEffect(() => {
-    if (!token) navigate("/signin");
-    if (token) getTodos();
-  }, [navigate]);
+    if (!token.access_token) navigate("/signin");
+    if (token.access_token) getTodos();
+  }, [navigate, token.access_token]);
 
+  console.log("angks");
   return (
     <Container>
       <Wrapper>
