@@ -1,6 +1,6 @@
 import React from "react";
 import {
-  HashRouter as Router,
+  BrowserRouter as Router,
   Routes,
   Route,
   Navigate,
@@ -12,7 +12,7 @@ import TodoList from "./pages/TodoList/TodoList";
 
 const App = () => {
   return (
-    <Router>
+    <Router basename="/">
       <Navbar />
       <Routes>
         <Route path="signin" element={<Login />} />
