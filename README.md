@@ -1,8 +1,14 @@
 <img width="100" height="100" alt="bank" src="https://user-images.githubusercontent.com/69576865/216808370-58cdc1f2-b173-4ba6-80cb-af48cb47b899.png">
 
 ## :mag_right: &nbsp; Intro
-> todoList 앱입니다.  
-기본적인 CRUD 기능을 제공합니다.
+> todoList 앱입니다. 기본적인 CRUD 기능을 제공합니다.</br>    
+### 프로젝트의 실행 방법   
+> $  npm install  
+> $  npm start
+
+### 유의사항   
+> 깃페이지로 배포하여 새로고침과 일부 리다이렉트가 제한됩니다.  
+> 인증과 CRUD는 잘 작동합니다.
 <br/>
 
 ## :link: &nbsp; Link
@@ -11,7 +17,7 @@ https://dong-geon-lee.github.io/wanted-pre-onboarding-frontend/
 <br/>
   
 ## :alarm_clock: &nbsp; Period
- - 2022.02.03 - 2023.02.05
+ - 2023.02.03 - 2023.02.05
 <br/>
 
 ## :seedling: &nbsp; Stack  
