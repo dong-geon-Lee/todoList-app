@@ -12,7 +12,7 @@
 <br/>
 
 ## :link: &nbsp; Link
-https://dong-geon-lee.github.io/todoList-app/
+https://todo-list-app-ivory-seven.vercel.app
 <br/>
 <br/>
   
