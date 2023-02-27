@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { findTodoList, formattedDates } from "../../helpers/helpers";
 import {
@@ -95,11 +95,10 @@ const TodoList = () => {
   };
 
   useEffect(() => {
-    if (!token.access_token) navigate("/signin");
-    if (token.access_token) getTodos();
-  }, [navigate, token.access_token]);
+    if (!token?.access_token) navigate("/signin");
+    if (token?.access_token) getTodos();
+  }, [navigate, token?.access_token]);
 
-  console.log("angks");
   return (
     <Container>
       <Wrapper>
@@ -140,9 +139,7 @@ const TodoList = () => {
                       value={editTodo}
                     />
                   ) : (
-                    <Span isCompleted={todoList.isCompleted}>
-                      {todoList?.todo}
-                    </Span>
+                    <Span>{todoList?.todo}</Span>
                   )}
                 </>
               </Label>

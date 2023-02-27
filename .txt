@@ -1,0 +1,138 @@
+채용 
+1) styled-componets 
+2) context API
+3) 
+
+
+안 쓰기로 한 것 
+1) 타입스크립트 
+2) 라이브러리 
+
+
+1. 로그인 & 회원가입 
+1) useState -> useRef
+2) match, 정규표현식 
+
+
+
+1) 이동건 
+1. api 
+2. components 
+3. constants 
+4. helpers 
+5. pages 
+6. styles 
+
+2) 이춘구 
+1. api 
+2. components 
+3. constants 
+4. contexts 
+5. hooks 
+6. pages 
+7. reducers 
+8. router 
+
+3) 이준석 
+1. api 
+2. components 
+3. hooks 
+4. pages 
+5. styles 
+6. utils 
+
+4) 진형빈 
+1. pages 
+2. components 
+3. hooks/api 
+
+5) 박수빈 
+1. apis 
+2. components 
+3. hoc 
+4. pages 
+
+6) 김채현 
+1. commons 
+2. signin 
+3. signup
+4. todos 
+  - assets 
+  - components
+    - addtodobutton 
+    - listitem
+  - utils
+
+7) 박종익 
+1. api 
+2. auth 
+ - components 
+ - pages 
+3. home 
+ - components 
+ - pages 
+4. todos 
+ - components 
+ - pages 
+5. UIElements 
+
+8) 한성린 
+1. apis 
+2. pages 
+3. types 
+4. utils 
+
+
+
+
+
+
+2) 이춘구 
+1. api 
+2. components 
+3. constants 
+4. contexts 
+5. hooks 
+6. pages 
+7. reducers 
+8. router 
+
+6) 김채현 
+1. commons 
+2. signin 
+3. signup
+4. todos 
+  - assets 
+  - components
+    - addtodobutton 
+    - listitem
+  - utils
+
+7) 박종익 
+1. api 
+2. auth 
+ - components 
+ - pages 
+3. home 
+ - components 
+ - pages 
+4. todos 
+ - components 
+ - pages 
+5. UIElements 
+
+
+결론 
+- src
+    - common
+        - api
+        - components
+    - auth
+        - api
+        - components
+        - context
+        - pages
+    - todo
+        - api
+        - components
+        - context 

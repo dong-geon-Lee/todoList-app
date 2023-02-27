@@ -33,11 +33,12 @@ const Login = () => {
         if (response.status === HTTP__OK) {
           localStorage.setItem("token", JSON.stringify(response.data));
           setUserData({ email: "", password: "" });
-          navigate("/todo", { state: { token: response.data } });
+          navigate("/todo");
         }
       }
       setDisabled(true);
     } catch (error) {
+      setDisabled(true);
       throw new Error(error.response.data.message);
     }
   };
