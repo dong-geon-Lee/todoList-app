@@ -45,15 +45,18 @@ https://todo-list-app-ivory-seven.vercel.app
 ![styled-components](https://img.shields.io/badge/styled--Components-DB7093?style=for-the-badge&logo=styled-components&logoColor=fff)
 
 ### [ 3 ] &nbsp;사용 기술 안내
-- HTML-CSS-JavaScript: 이 기술들은 웹 개발의 기본적인 요소라서 선택하였습니다.   
-HTML은 웹 페이지의 구조와 콘텐츠를 제공하고, CSS는 스타일 적용이 가능하고, JavaScript는 웹의 동적 동작을 가능하게 합니다.
+- <strong>HTML-CSS-JavaScript</strong> </br>
+이 기술들은 웹 개발의 기본적인 요소라서 선택하였습니다. HTML은 웹 페이지의 구조와 콘텐츠를 제공합니다. </br>
+CSS는 스타일 적용이 가능하며 JavaScript는 웹의 동적 동작을 가능하게 합니다.
 
-- React: React는 UI 구성 요소를 쉽고 효율적으로 생성할 수 있는 기능 때문에 기본 프런트 엔드 프레임워크로 선택되었습니다.   
-컴포넌트를 사용하면 한 컴포넌트의 변경 사항이 다른 컴포넌트에 영향을 미치지 않는 모듈식 및 예측 가능한 개발 프로세스가 가능합니다.   
+- <strong>React</strong> </br>
+React는 UI 구성 요소를 쉽고 효율적으로 생성할 수 있는 기능 때문에 선택했습니다. </br>
+컴포넌트를 사용하면 한 컴포넌트의 변경 사항이 다른 컴포넌트에 영향을 미치지 않는 모듈식 및 예측 가능한 개발이 가능합니다.     
 또한 React의 가상 DOM과 효율적인 렌더링 방법은 고성능 애플리케이션을 제공합니다.
 
-- Styled-components: CSS 충돌 방지 기능과 높은 재사용성 때문에 스타일링 라이브러리로 선택되었습니다.  
-해당 라이브러리는 각 구성 요소 내에서 스타일을 캡슐화함으로써 유지 관리가 더 쉬워지는 장점이 있습니다.   
+- <strong>Styled-components</strong> </br>
+CSS 충돌 방지 기능과 높은 재사용성 때문에 스타일링 라이브러리로 선택했습니다. </br> 
+해당 라이브러리는 각 구성 요소 내에서 스타일을 모듈화하여 유지 관리가 더 쉬워지는 장점이 있습니다.   
 또한 동적 스타일 및 테마를 사용할 수 있으므로 보다 유연하고 반응이 빠른 디자인이 가능합니다.
 
 <br/>
