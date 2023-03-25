@@ -1,22 +1,42 @@
 <img width="100" height="100" alt="bank" src="https://user-images.githubusercontent.com/69576865/216808370-58cdc1f2-b173-4ba6-80cb-af48cb47b899.png">
 
-## :mag_right: &nbsp; Intro
-> todoList 앱입니다. 기본적인 CRUD 기능을 제공합니다.</br>    
-### 프로젝트의 실행 방법   
-> $  npm install  
-> $  npm start
+## :mag_right: &nbsp; 프로젝트 소개
+> TodoList 앱은 사용자가 일상적인 작업을 관리하고 정리할 수 있게 해주는 간단하면서도 강력한 도구입니다.  
+> 기본 CRUD 기능을 통해 사용자는 필요에 따라 작업을 쉽게 생성, 읽기, 업데이트 및 삭제할 수 있습니다. 
+
+
+### ( 1 ) &nbsp;프로젝트 목적 
+- :white_check_mark: &nbsp; 로그인 및 회원가입 기능 구현 
+- :white_check_mark: &nbsp; 라우팅 경로 설계 및 리디렉션 구현 
+- :white_check_mark: &nbsp; API를 사용하여 CRUD 구현 
+- :white_check_mark: &nbsp; try/catch 블록으로 오류 처리 구현 
+- :white_check_mark: &nbsp; 코드 리팩토링으로 코드 품질 및 재사용성 향상
+- :white_check_mark: &nbsp; 유효성 검사 적용
+
+</br>
+
+### ( 2 ) &nbsp;프로젝트 설치 & 실행
+#### 터미널에서 다음 명령어를 입력합니다. 
+
+```
+$ git clone https://github.com/dong-geon-Lee/guess-number-app.git
+$ cd guess-number-app 
+$ code .
+$ npm install
+$ npm start
+```
 <br/>
 
-## :link: &nbsp; Link
+## :link: &nbsp; 배포 링크
 https://todo-list-app-ivory-seven.vercel.app
 <br/>
 <br/>
   
-## :alarm_clock: &nbsp; Period
+## :alarm_clock: &nbsp; 프로젝트 기간
  - 2023.02.03 - 2023.02.05
 <br/>
 
-## :seedling: &nbsp; Stack  
+## :seedling: &nbsp; 기술 스택  
 ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=HTML5&logoColor=fff)
 ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=CSS3&logoColor=fff)
 ![JAVASCRIPT](https://img.shields.io/badge/JavaScript-343a40?style=for-the-badge&logo=JavaScript&logoColor=F7DF1E)  
@@ -25,7 +45,7 @@ https://todo-list-app-ivory-seven.vercel.app
 <br/>
 <br/>
 
-## :eyes: &nbsp; Web View
+## :eyes: &nbsp; 프로젝트 시연
 <details>
 <summary>유효성 검사</summary>  
 <div markdown="1">
@@ -83,7 +103,7 @@ https://todo-list-app-ivory-seven.vercel.app
 </details>
 </br>
 
-## :bust_in_silhouette: &nbsp; Crew
+## :bust_in_silhouette: &nbsp; 프로젝트 참여 
 Crew | Role | GitHub
 ----- | ----- | -----
 💻 이동건 | Front-end | https://github.com/dong-geon-Lee
