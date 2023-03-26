@@ -366,7 +366,7 @@ export const createTodoAPI = async (todo, token) => {
 </br>
 
 #### 3) helpers 유틸 함수를 이용하면서 컴포넌트에 있는 코드가 보기 편해졌다. 
-<p>ex1 ) config에 들어가는 코드가 제법 길어서 helpers.js에 함수로 만들어서 사용했다. </br> 
+<p><strong>ex1 )</strong> config에 들어가는 코드가 제법 길어서 helpers.js에 함수로 만들어서 사용했다. </br> 
 helpers 함수명을 보면 그 함수가 어떤 결과값을 의미하는지 쉽게 알 수 있었다.</br> 
 즉 어떤값을 반환하는지 반복해서 함수를 확인해보는 빈도가 줄었다. </br> 그 만큼 함수 명칭의 중요성도 자연스럽게 알게되었다.</p>
 
@@ -390,7 +390,7 @@ export const deleteTodoAPI = async (id, token) => {
 };
 ```
 
-<p>ex2 ) 회원가입에 요구되는 유효성 검사를 함수로 만들어서 사용했다. </p>
+<p><strong>ex2 )</strong> 회원가입에 요구되는 유효성 검사를 함수로 만들어서 사용했다. </p>
 
 ```js
 export const checkSignUpUser = (email, password, password2) => {
@@ -399,27 +399,26 @@ export const checkSignUpUser = (email, password, password2) => {
 };
 
 const handleSignup = async (e) => {
-    e.preventDefault();
+  e.preventDefault();
 
-    try {
-      const validation = checkSignUpUser(email, password, password2);
-      if (validation) {
-        const response = await signupAPI(email, password);
-        if (response.status === HTTP__CREATED) {
-          navigate("/signin");
-          setUserData({ email: "", password: "", password2: "" });
-        }
-      }
-      setDisabled(true);
-    } catch (error) {
-      setDisabled(true);
-      throw new Error(error.response.data.message);
+  try {
+    const validation = checkSignUpUser(email, password, password2);
+    const response = validation && (await signupAPI(email, password));
+    if (response.status === HTTP__CREATED) {
+      navigate("/signin");
+      setUserData({ email: "", password: "", password2: "" });
     }
-  };
+
+    setDisabled(true);
+  } catch (error) {
+    setDisabled(true);
+    throw new Error(error.response.data.message);
+  }
+};
 ```
 </br>
 
-<p>ex3 ) 기타 helpers 함수들 (날짜 포맷 및 특정 todo목록 찾기) 
+<p><strong>ex3 )</strong> 기타 helpers 함수들 (날짜 포맷 및 특정 todo목록 찾기) 
   
 ```js
 export const formattedDates = () => {
@@ -439,6 +438,7 @@ export const findTodoList = (todoLists, id) => {
   return todoLists.find((todoList) => todoList.id === id);
 };
 ```
+</br>
 
 #### 4) styled-components 는 개발을 더 편리하게 도와주었다. 
 <p>css 명칭을 신경쓰거나 충돌 우려가 필요 없었고 그저 작업해야되는 컴포넌트의 폴더를 열어서 코드를 짜거나 디버깅을 하면된다.</br>
