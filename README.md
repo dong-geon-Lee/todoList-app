@@ -305,6 +305,10 @@ export const deleteTodoAPI = async (id, token) => {
 
 <h4>3 ) 배운점 & 느낀점</h4>
 
+#### 1) react-router-dom 을 사용하면 내 전체적인 개발 현황을 파악하기가 편리했다.
+인증 관련된 컴포넌트와 CRUD를 만드는 컴포넌트 그리고 /signin으로 Navigate 되는 
+핵심 정보들을 쉽게 파악할 수 있어서 협업 할 떄도 역할 분배가 용이하겠다고 생각했다. 
+
 ```js
 const App = () => {
   return (
