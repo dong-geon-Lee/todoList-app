@@ -308,7 +308,7 @@ export const deleteTodoAPI = async (id, token) => {
 
 #### 1) react-router-dom 을 사용하면 내 전체적인 개발 현황을 파악하기가 편리했다.
 <p>인증 관련된 컴포넌트와 CRUD를 만드는 컴포넌트 그리고 *(와일드카드)를 이용해서 Navigate 시키는 코드가 있다. </br>
-이와 같은 애플리케이션의 핵심 정보들을 금방 파악할 수 있어서 목표에 대한 집중력과 협업 할 떄도 역할 분배에 도움이 되겠다고 느꼈다.</p>   
+이와 같은 애플리케이션의 핵심 정보들을 금방 파악할 수 있어서 혼자 할 떄 또는 협업 할 떄도 도움이 되겠다고 느꼈다.</p>   
 
 ```js
 const App = () => {
@@ -363,6 +363,160 @@ export const createTodoAPI = async (todo, token) => {
   }
 };
 ```
+</br>
+
+#### 3) helpers 유틸 함수를 이용하면서 컴포넌트에 있는 코드가 보기 편해졌다. 
+<p>ex1 ) config에 들어가는 코드가 제법 길어서 helpers.js에 함수로 만들어서 사용했다. </br> 
+helpers 함수명을 보면 그 함수가 어떤 결과값을 의미하는지 쉽게 알 수 있었다.</br> 
+즉 어떤값을 반환하는지 반복해서 함수를 확인해보는 빈도가 줄었다. </br> 그 만큼 함수 명칭의 중요성도 자연스럽게 알게되었다.</p>
+
+
+```js
+export const config = (token) => {
+  return {
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token.access_token}`,
+    },
+  };
+};
+
+export const deleteTodoAPI = async (id, token) => {
+  try {
+    await axios.delete(`${TODOS_API_URL}/${id}`, config(token));
+  } catch (error) {
+    throw error;
+  }
+};
+```
+
+<p>ex2 ) 회원가입에 요구되는 유효성 검사를 함수로 만들어서 사용했다. </p>
+
+```js
+export const checkSignUpUser = (email, password, password2) => {
+  const checkPassword = password.length >= 8 && password === password2;
+  return email.includes("@") && checkPassword;
+};
+
+const handleSignup = async (e) => {
+    e.preventDefault();
+
+    try {
+      const validation = checkSignUpUser(email, password, password2);
+      if (validation) {
+        const response = await signupAPI(email, password);
+        if (response.status === HTTP__CREATED) {
+          navigate("/signin");
+          setUserData({ email: "", password: "", password2: "" });
+        }
+      }
+      setDisabled(true);
+    } catch (error) {
+      setDisabled(true);
+      throw new Error(error.response.data.message);
+    }
+  };
+```
+</br>
+
+<p>ex3 ) 기타 helpers 함수들 (날짜 포맷 및 특정 todo목록 찾기) 
+  
+```js
+export const formattedDates = () => {
+  const options = {
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  };
+
+  return new Date().toLocaleDateString("ko-KR", options);
+};
+```
+  
+```js
+export const findTodoList = (todoLists, id) => {
+  return todoLists.find((todoList) => todoList.id === id);
+};
+```
+
+#### 4) styled-components 는 개발을 더 편리하게 도와주었다. 
+<p>css 명칭을 신경쓰거나 충돌 우려가 필요 없었고 그저 작업해야되는 컴포넌트의 폴더를 열어서 코드를 짜거나 디버깅을 하면된다.</br>
+그리고 리액트의 state를 활용해서 스타일의 props 속성을 이용해서 동적인 변화도 편리하게 줄 수 잇다.
+</p>  
+
+```js
+  return (
+    <Container>
+      <Form onSubmit={handleSignIn}>
+        <Title>로그인</Title>
+        <Div>
+          <Label>이메일</Label>
+          <Input
+            type="text"
+            data-testid="email-input"
+            name="email"
+            value={email}
+            onChange={onChange}
+            placeholder="이메일 입력..."
+          />
+        </Div>
+        <Div>
+          <Label>패스워드</Label>
+          <Input
+            type="password"
+            data-testid="password-input"
+            name="password"
+            value={password}
+            onChange={onChange}
+            placeholder="패스워드 입력..."
+          />
+        </Div>
+
+        <Button type="submit" data-testid="signin-button" disabled={disabled}>
+          로그인
+        </Button>
+      </Form>
+    </Container>
+  );
+```
+
+```js
+import styled from "styled-components";
+
+export const Container = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16rem 0;
+`;
+
+export const Form = styled.form`
+  width: 50rem;
+  height: 50rem;
+`;
+
+
+      ..... 
+
+export const Button = styled.button`
+  width: 100%;
+  display: block;
+  padding: 1.6rem;
+  font-size: 2rem;
+  background-color: ${(props) => (props.disabled ? "gray" : "#db4c3f")};
+  color: #fff;
+  margin: 3.6rem 0;
+  border-radius: 0.4rem;
+  transition: all 0.3s ease;
+  cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
+
+  &:hover {
+    background-color: ${(props) => (props.disabled ? "gray" : "#c53727")};
+  }
+`;
+```
+  
 </br>
 </br>
 </br>
