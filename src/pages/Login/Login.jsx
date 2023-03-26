@@ -28,14 +28,13 @@ const Login = () => {
 
     try {
       const validation = checkSignInUser(email, password);
-      if (validation) {
-        const response = await signInAPI(email, password);
-        if (response.status === HTTP__OK) {
-          localStorage.setItem("token", JSON.stringify(response.data));
-          setUserData({ email: "", password: "" });
-          navigate("/todo");
-        }
+      const response = validation && (await signInAPI(email, password));
+      if (response.status === HTTP__OK) {
+        localStorage.setItem("token", JSON.stringify(response.data));
+        setUserData({ email: "", password: "" });
+        navigate("/todo");
       }
+
       setDisabled(true);
     } catch (error) {
       setDisabled(true);
