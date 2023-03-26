@@ -165,11 +165,11 @@ pages 폴더는 UI를 더 작고 재사용 가능한 구성 요소로 분해하�
 
 <p>서버와의 비동기 통신을 처리하기 위해 try-catch 및 async-await 문을 사용하여 오류 처리를 수행합니다.
 checkSignInUser 함수는 API를 호출하기 전에 사용자 입력의 유효성을 검사하는 데 사용됩니다.
-signInAPI 메서드는 사용자의 이메일과 비밀번호로 서버에 게시 요청을 보내는 데 사용됩니다.</p>
+signInAPI 메서드는 사용자의 이메일과 비밀번호를 받아서 서버에 요청을 보내는 데 사용됩니다.</p>
 
 <p>응답 상태가 HTTP_OK이면 사용자의 토큰이 로컬 저장소에 저장되고 userData가 빈 이메일과 비밀번호로 초기화됩니다.
-그런 다음 사용자는 /todo 경로로 이동합니다. 로그인에 실패하면 로그인 버튼이 비활성화되고 서버에서 오류 메시지가 수신됩니다.
-signInAPI 기능은 signupAPI 기능과 유사하지만 대신 서버의 /signin 끝점에 POST 요청을 보냅니다. 요청이 성공하면 함수는 응답 개체를 반환합니다.</p>
+그런 다음 사용자는 /todo 경로로 이동합니다. 로그인에 실패하면 로그인 버튼이 비활성화되고 서버에서 오류 메시지를 받습니다.
+signInAPI 기능은 signupAPI 기능과 유사하고 POST 요청을 보냅니다. 요청이 성공하면 함수는 response를 return 합니다.</p>
 </br>
 
 ```js
@@ -195,7 +195,7 @@ const handleSignIn = async (e) => {
 </br>
 
 <p>
-axios 라이브러리는 /signin 경로를 사용하여 서버에 게시 요청을 만드는 데 사용됩니다. </br>
+axios 라이브러리는 /signin 경로를 사용하여 서버에 POST 요청을 만드는 데 사용됩니다. </br>
 요청이 성공하면 응답이 handleSignIn 함수로 전달됩니다.
 요청이 실패하면 오류가 handleSignIn 함수로 전달됩니다. </br>
 이러한 기능과 방법을 사용하여 React 애플리케이션은 서버와 사용자 인증을 수행하고 사용자를 /todo 페이지로 이동할 수 있습니다. 
@@ -226,7 +226,7 @@ export const signInAPI = async (email, password) => {
 <p>컴포넌트가 마운트될 때 getTodosAPI 함수가 호출되었고 JWT 토큰과 함께 서버에 GET 요청을 보냈습니다. </br>
 서버가 응답하여 할 일 목록들이 화면에 표시됩니다.
 getTodosAPI 함수는 인증 토큰을 헤더로 사용하여 GET 요청을 서버의 /todos 끝점으로 보냅니다. </br>
-서버는 인증된 사용자와 관련된 할 일 목록으로 응답합니다.</p>
+서버는 인증 된 사용자와 관련된 할 일 목록 데이터로 응답합니다.</p>
 
 ```js
 export const getTodosAPI = async (token) => {
@@ -242,10 +242,9 @@ export const getTodosAPI = async (token) => {
 </br>
 
 <h5>2. createTodoAPI</h5>
-<p>사용자가 목록에 새 작업을 추가했을 때 createTodoAPI 함수가 호출되었습니다.
+<p>사용자가 목록에 새 작업을 추가했을 때 createTodoAPI 함수가 호출됩니다.
 함수는 새 작업 및 JWT 토큰과 함께 서버에 POST 요청을 보냈습니다. </br>
-작업이 성공적으로 추가되면 서버는 새 작업으로 응답한 다음 목록에 추가했습니다.</p>
-<p>createTodoAPI 함수는 새로운 todo 항목을 데이터로, 인증 토큰을 헤더로 사용하여 POST 요청을 서버의 /todos 엔드포인트로 보냅니다. </br>
+<p>createTodoAPI 함수는 새로운 todo 항목을 데이터로 인증 토큰을 헤더로 사용하여 POST 요청을 서버의 /todos 엔드포인트로 보냅니다. </br>
 요청이 성공하면 함수는 새로 생성된 todo 항목을 반환합니다.</p>
 
 ```js
@@ -517,7 +516,6 @@ export const Button = styled.button`
 `;
 ```
   
-</br>
 </br>
 </br>
 
