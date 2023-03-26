@@ -302,12 +302,13 @@ export const deleteTodoAPI = async (id, token) => {
   }
 };
 ```
+</br>
 
 <h4>3 ) 배운점 & 느낀점</h4>
 
 #### 1) react-router-dom 을 사용하면 내 전체적인 개발 현황을 파악하기가 편리했다.
-인증 관련된 컴포넌트와 CRUD를 만드는 컴포넌트 그리고 /signin으로 Navigate 되는 
-핵심 정보들을 쉽게 파악할 수 있어서 협업 할 떄도 역할 분배가 용이하겠다고 생각했다. 
+<p>인증 관련된 컴포넌트와 CRUD를 만드는 컴포넌트 그리고 *(와일드카드)를 이용해서 Navigate 시키는 코드가 있다. </br>
+이와 같은 애플리케이션의 핵심 정보들을 금방 파악할 수 있어서 목표에 대한 집중력과 협업 할 떄도 역할 분배에 도움이 되겠다고 느꼈다.</p>   
 
 ```js
 const App = () => {
@@ -324,7 +325,44 @@ const App = () => {
   );
 };
 ```
+</br>
 
+#### 2) api 폴더에 백엔드 API에 대한 코드를 관리하면서 코드 추가 및 디버깅이 쉬워졌다.
+<p>이전에는 폴더를 별도로 만들지 않았고 컴포넌트마다 필요한 api 코드를 넣었다. </br>
+그 결과 앱이 복잡해 질 수록 해당 요청이 어디부터 시작되는지 파일을 찾기가 어려워서 많은 시간이 낭비되었다.</br>
+추가적으로 코드의 흐름이라든가 에러 등을 찾기가 어려워졌던 기억이 있다. </br> 
+이번에 api 폴더를 사용해보면서 생산성이 올라간 듯한 느낌이 들었다. 
+</p>
+
+
+```js
+// api/auth.js
+export const signInAPI = async (email, password) => {
+  try {
+    const response = await axios.post(
+      `${AUTH_API_URL}/signin`,
+      { email, password },
+      headers
+    );
+    return response;
+  } catch (error) {
+    throw error;
+  }
+};
+```
+</br>
+
+```js
+// api/todo.js
+export const createTodoAPI = async (todo, token) => {
+  try {
+    const response = await axios.post(TODOS_API_URL, { todo }, config(token));
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+```
 </br>
 </br>
 </br>
