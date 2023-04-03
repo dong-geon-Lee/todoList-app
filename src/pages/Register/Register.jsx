@@ -38,7 +38,7 @@ const Register = () => {
       setDisabled(true);
     } catch (error) {
       setDisabled(true);
-      throw new Error(error.response.data.message);
+      throw new Error(error.response?.data?.message);
     }
   };
 
