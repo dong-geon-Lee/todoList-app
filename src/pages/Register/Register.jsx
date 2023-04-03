@@ -29,13 +29,12 @@ const Register = () => {
 
     try {
       const validation = checkSignUpUser(email, password, password2);
-      if (validation) {
-        const response = await signupAPI(email, password);
-        if (response.status === HTTP__CREATED) {
-          navigate("/signin");
-          setUserData({ email: "", password: "", password2: "" });
-        }
+      const response = validation && (await signupAPI(email, password));
+      if (response.status === HTTP__CREATED) {
+        navigate("/signin");
+        setUserData({ email: "", password: "", password2: "" });
       }
+
       setDisabled(true);
     } catch (error) {
       setDisabled(true);
